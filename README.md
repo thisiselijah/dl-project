@@ -2,8 +2,19 @@
 
 MTDDH 小兒髖關節關鍵點偵測作業：輸入單張正位骨盆 X 光，用 YOLO-Pose 預測左右髖關節共 8 個關鍵點，並以 Pose mAP50–95、NME、PCK@0.05 評估。
 
+## 物件偵測基礎
+物件偵測（Object Detection）結合了影像分類（Classification）與物件定位（Localization），目標是在一張輸入影像中找出所有感興趣的目標，預測其類別並以邊界框標示位置。
+
+> **Problem Formulation.** Given an input image tensor $I \in \mathbb{R}^{H \times W \times C}$ of height $H$, width $W$, and $C$ channels, object detection is formulated as a set-valued mapping $f_\theta: \mathbb{R}^{H \times W \times C} \to \mathcal{P}_{\text{fin}}(\mathcal{B} \times \mathcal{C} \times \mathcal{S})$ that predicts a finite set of $N$ object instances:
+> 
+> $$\hat{\mathcal{D}} = \left\{ (\mathbf{b}_i, c_i, s_i) \right\}_{i=1}^{N}, \quad \mathbf{b}_i \in \mathcal{B},\; c_i \in \mathcal{C},\; s_i \in \mathcal{S}$$
+> 
+> 
+> 
+> where $\mathbf{b}_i = (x_i, y_i, w_i, h_i) \in \mathcal{B} \subset \mathbb{R}^4$ denotes the bounding box parameterized by its center coordinates $(x_i, y_i)$ and spatial dimensions $(w_i, h_i)$ (equivalently expressed via top-left and bottom-right corners $(x_{\min}, y_{\min}, x_{\max}, y_{\max})$), $c_i \in \mathcal{C} = \{1, 2, \dots, K\}$ represents the discrete semantic class index among $K$ foreground categories, and $s_i \in \mathcal{S} = [0, 1]$ indicates the predicted confidence score.
+
 ## Dataset
-[資料集](https://drive.google.com/file/u/0/d/1RiZPit24Z-WglDqzsDT5VUzkqWlScD-Q/view?usp=sharing&pli=1)
+載點: [資料集](https://drive.google.com/file/u/0/d/1RiZPit24Z-WglDqzsDT5VUzkqWlScD-Q/view?usp=sharing&pli=1)
 
 | cls | 類別 | kpt 0 | kpt 1 |
 |---|---|---|---|
@@ -13,6 +24,14 @@ MTDDH 小兒髖關節關鍵點偵測作業：輸入單張正位骨盆 X 光，�
 - 標註格式：`cls cx cy w h kx0 ky0 v0 kx1 ky1 v1`（座標正規化 0–1，v 為可見性）
 - 每張影像通常 4 行：左右各一個 `hip_pelvis`、一個 `hip_femour`
 - 切分：train 1041 / val 344 / test 347
+
+
+
+
+
+
+
+<center>--- 以下是 AI 產生 ---</center>
 
 ## 開始步驟
 

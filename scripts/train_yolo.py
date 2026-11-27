@@ -30,13 +30,24 @@ def parse_args():
     p.add_argument("--imgsz", type=int, default=640)
     p.add_argument("--batch", type=int, default=16)
     p.add_argument("--optimizer", default="auto", help="SGD / Adam / AdamW / auto")
-    p.add_argument("--lr0", type=float, default=0.01, help="initial LR (ignored when optimizer=auto)")
-    p.add_argument("--patience", type=int, default=100, help="early-stopping patience in epochs")
+    p.add_argument(
+        "--lr0",
+        type=float,
+        default=0.01,
+        help="initial LR (ignored when optimizer=auto)",
+    )
+    p.add_argument(
+        "--patience", type=int, default=100, help="early-stopping patience in epochs"
+    )
     p.add_argument("--seed", type=int, default=0)
     # runtime
     p.add_argument("--cache", action="store_true", help="cache images in RAM")
-    p.add_argument("--fraction", type=float, default=1.0, help="fraction of train set to use")
-    p.add_argument("--project", default="runs/pose", help="output root (point to Drive on Colab)")
+    p.add_argument(
+        "--fraction", type=float, default=1.0, help="fraction of train set to use"
+    )
+    p.add_argument(
+        "--project", default="runs/pose", help="output root (point to Drive on Colab)"
+    )
     p.add_argument("--name", default=None, help="run name under --project")
     p.add_argument("--resume", default=None, help="path to last.pt to resume from")
     return p.parse_args()
@@ -78,8 +89,8 @@ def main():
             name=args.name,
         )
 
-    print(f"best weights: {model.trainer.best}")
-    print(f"run dir:      {model.trainer.save_dir}")
+    print(f"best weights: {model.trainer.best}")  # pyright: ignore[reportOptionalMemberAccess, reportAttributeAccessIssue]
+    print(f"run dir:      {model.trainer.save_dir}")  # pyright: ignore[reportOptionalMemberAccess]
 
 
 if __name__ == "__main__":

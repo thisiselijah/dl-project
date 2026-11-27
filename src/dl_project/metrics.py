@@ -1,19 +1,19 @@
 import numpy as np
-from mmpose.evaluation.functional import keypoint_pck_accuracy, keypoint_nme
+from mmpose.evaluation.functional import keypoint_nme, keypoint_pck_accuracy
 
 
-def _norm_factor(bbox, xyxy):
+def bbox_norm_factor(bbox: np.ndarray, xyxy: bool = False):
     """ """
-    pass
+    return np.zeros(1)
 
 
-def NME(pred, ):
+def nme(pred, gt, mask, bbox, xyxy=False):
     """ """
     nme = keypoint_nme(pred, gt, mask, normalize_factor=norm.copy())
     return nme
 
 
-def PCK(pred, ):
+def pck(pred, gt, mask, bbox, thr=0.05, xyxy=False):
     """ """
     _, pck05, _ = keypoint_pck_accuracy(
         pred, gt, mask, thr=0.05, norm_factor=norm.copy()
